@@ -1,0 +1,146 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="style.css"/>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <title>Final Project 426</title>
+    </head>
+    <body>
+        <div class = "intro">
+            <h1>Memory Matching Game</h1>
+            <p>Click the squares and try to find all the matches</p>
+        </div>
+
+        <div class="cards">
+            
+            <button class="button is-large is-focused is-primary" id="1"></button>
+            <button class="button is-large is-focused is-primary" id="2"></button>
+            <button class="button is-large is-focused is-primary" id="3"></button>
+            <button class="button is-large is-focused is-primary" id="4"></button>
+            <br><p></p>
+            <button class="button is-large is-focused is-primary" id="5"></button>
+            <button class="button is-large is-focused is-primary" id="6"></button>
+            <button class="button is-large is-focused is-primary" id="7"></button>
+            <button class="button is-large is-focused is-primary" id="8"></button>
+
+        </div>
+
+        <div class="game-controls">
+            <div id="game-score">Score: 0</div>
+            <div id="game-over-display">You're almost there...</div>
+            <div class="container">
+                <button type="button" class="btn" id="reset-button">Reset Game</button>
+            </div>
+        </div>
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="game.js" type="module"></script>
+        <script src="controller.js" type="module"></script>
+        <script src='firebase.js'></script>
+    </body>
+</html>
+
+ -->
+
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>426 Welcome Memory Matching </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script>
+        var firebaseConfig = {
+        apiKey: "AIzaSyDDmmzzYj_aZ2OYGTzMurDkhQnWgAcaDeE",
+        authDomain: "memory-matching-88f9f.firebaseapp.com",
+        projectId: "memory-matching-88f9f",
+        storageBucket: "memory-matching-88f9f.appspot.com",
+        messagingSenderId: "1019749602013",
+        appId: "1:1019749602013:web:25d5f89d11c2be28cf8134",
+        measurementId: "G-F5ZJ3958G3"
+        };
+  // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+    
+    <script src='index.js'></script>
+
+</head>
+<body>
+    <h1 class="title is-2 pt-3" style="text-align:center">Welcome to Memory Matching!</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader"></div>
+    <!-- <div id="formContainer">
+        <div id="header"></div>
+        <input type="email" placeholder="email" id="email"/>
+        <input type="password" placeholder="password" id="password"/>
+
+        <button onclick="signUp()" id="signUp">Sign up</button>
+        <button onclick="signIn()" id="signIn">Sign in</button>
+        <button onclick="signOut()" id="signOut">Sign out</button>
+    </div> -->
+
+    <script>
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user)
+            {
+                window.location.href = "./entry.html";
+            }
+            else
+            {
+                // Initialize the FirebaseUI Widget using Firebase.
+                var ui = new firebaseui.auth.AuthUI(firebase.auth());
+                var uiConfig = {
+                  callbacks: {
+                    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                      // User successfully signed in.
+                      // true: redirect automatically
+                      return true;
+                    },
+                    uiShown: function() {
+                      // hide loader when login form is rendered
+                      document.getElementById('loader').style.display = 'none';
+                    }
+                  },
+                  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+                  signInFlow: 'popup',
+                  signInSuccessUrl: 'entry.html',
+                  signInOptions: [
+                    // Leave the lines as is for the providers you want to offer your users.
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                  ]
+                };
+                ui.start('#firebaseui-auth-container', uiConfig);
+            }
+        });
+
+        firebase.auth().signOut()
+        .then(() => {
+            console.log('Signed Out');
+        })
+        .catch(e=>{
+            console.error('Sign Out Error', e);
+        });
+  
+      </script>
+</body>
+</html>
