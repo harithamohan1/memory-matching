@@ -1,6 +1,6 @@
 import Game from "./game.js"
-import {client_key} from "../key.js";
-import {NASA_key} from "../key.js";
+import {client_key} from "./key.js";
+import {NASA_key} from "./key.js";
 let urlSoFar = [];
 let flippedCards = [];
 let pairsRevealed = [];
@@ -18,6 +18,7 @@ let icons = [
 ];
 
 export const renderBoard = function(game) {
+    console.log("reach renderBoard");
     const requestURL = 'https://api.unsplash.com/search/photos?query='+document.getElementById("userTheme").value+ '&client_id=' + client_key.client;
     console.log("is requestURL working?" + requestURL);
     picAssignment();
