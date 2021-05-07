@@ -1,6 +1,6 @@
 import Game from "./game.js"
 import {client_key} from "./key.js";
-import {key} from "./key.js";
+import {NASA_key} from "./key.js";
 let urlSoFar = [];
 let flippedCards = [];
 let pairsRevealed = [];
@@ -78,7 +78,7 @@ export const renderBoard = function(game) {
                                 document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString();
                                 if(game.gameOver()) {
                                     document.getElementById('game-over-display').innerHTML = 'Nice! You won!';
-                                    let NASA_URL = key.NASA_API_URL;
+                                    let NASA_URL = NASA_key.NASA_API_URL;
                                     let fetchNASAPicture = async() => {
                                         try {
                                             let response = await fetch(`${NASA_URL}`)

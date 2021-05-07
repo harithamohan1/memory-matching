@@ -1,4 +1,4 @@
-export const key = {
+export const NASA_key = {
     NASA_API_URL: 'https://api.nasa.gov/planetary/apod?api_key=GwspDD3cQrVRD5WJ7TvkpZEHsmv5bwGrX7ItWD6G',
 }
 
