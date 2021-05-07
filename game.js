@@ -1,4 +1,3 @@
-// const cardOptions = [1,2,3,4,1,2,3,4];
 export default class Game {
     constructor() {
         this.score = 0;
@@ -10,56 +9,64 @@ export default class Game {
                 "pair":1,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-music",
+                // "icon": "fas fa-music",
+                "url":"",
             },
             {
                 "id": 2,
                 "pair":1,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-music",
+                // "icon": "fas fa-music",
+                "url":"",
             },
             {
                 "id": 3,
                 "pair":2,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-home",
+                // "icon": "fas fa-home",
+                "url":"",
             },
             {
                 "id": 4,
                 "pair":2,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-home",
+                // "icon": "fas fa-home",
+                "url":"",
             },
             {
                 "id": 5,
                 "pair":3,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-drum",
+                // "icon": "fas fa-drum",
+                "url":"",
             },
             {
                 "id": 6,
                 "pair":3,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-drum",
+                // "icon": "fas fa-drum",
+                "url":"",
             },
             {
                 "id": 7,
                 "pair":4,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-trash",
+                // "icon": "fas fa-trash",
+                "url":"",
             },
             {
                 "id": 8,
                 "pair":4,
                 "flipped": false,
                 "reveal": false,
-                "icon": "fas fa-trash",
+                // "icon": "fas fa-trash",
+                "url":"",
             },
         ];
         this.size = this.board.length;
@@ -67,12 +74,14 @@ export default class Game {
 
     }
 
+
     setupNewGame() {
-        //this.board = new Array(this.size);
-        //inject numbers into board array
-        // this.board = [1,2,3,4,1,2,3,4];
-        
         //shuffle board array
+        for(let i = 0; i<this.board.length-1;i++) {
+            this.board[i].flipped = false;
+            this.board[i].reveal = false;
+        }
+        
         for(let i =this.board.length-1; i>0; i--) {
             let j = Math.floor(Math.random()*(i+1));
             let temp = this.board[i];
@@ -81,18 +90,8 @@ export default class Game {
         }
     }
 
-    // flipCard(id) {
-    //     document.getElementById('#'+id).innerHTML = 'whoa';
-    // }
-
     gameOver() {
         console.log("game over reach");
-        // for(let i =0; i<this.board.length; i++){
-        //     if(!this.board[i].flipped) {
-        //         return false;
-        //     }
-        // }
-        // return true;
         if(this.score === this.board.length/2) {
             return true;
         }
@@ -106,8 +105,8 @@ export default class Game {
         for(let i = 0; i<this.board.length; i++) {
             this.board[i] = gameState.board[i];
         }
-
     }
+    
     matchQuestion(currIndex, otherIndex) {
         if(this.board[currIndex].pair === this.board[otherIndex].pair){
             return true;

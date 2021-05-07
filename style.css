@@ -5,4 +5,11 @@
     padding: 10px;
   }
 
+  .game-wrapper {
+    display: none;
+  }
+
+  .NASA {
+    display: none;
+  }
 
