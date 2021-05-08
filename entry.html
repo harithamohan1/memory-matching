@@ -19,17 +19,17 @@
 
         
     </head>
-    <body>
+    <body class="has-background-primary-light">
         <div class = "intro">
-            <h1 class="title is-2 pt-3" style="text-align:center">Memory Matching Game</h1>
-            <p class="subtitle is-4 pt-3" style="text-align:center">Click the squares and try to find all the matches</p>
+            <h1 class="title is-2 pt-3 displayInCenter">Memory Matching Game</h1>
+            <p class="subtitle is-4 pt-3 displayInCenter">Click the squares and try to find all the matches</p>
         </div>
 
         <div class="center">
-            <div class="choose-theme" id="start-appear">
+            <div class="choose-theme displayInCenter" id="start-appear">
                 <label for="theme">Select theme:</label>
-                <div class="ac-scroll">
-                    <input type="text" name="theme" id="userTheme" list="themeList">
+                <div class="control">
+                    <input class="input is-primary" type="text" name="theme" id="userTheme" list="themeList">
                 </div>
                 <datalist id="themeList">
                     <option>Animal</option>
@@ -40,18 +40,20 @@
                     <option>Dog</option>
                     <option>Everything</option>
                     <option>Food</option>
+                    <option>Flowers</option>
                     <option>Funny</option>
                     <option>Music</option>
                     <option>Nature</option>
                     <option>Ocean</option>
-                    <option>Rainbow</option>
+                    <option>Music</option>
                     <option>Random!</option>
                     <option>Sports</option>
                     <option>Summer</option>
                     <option>Swag</option>
                     <option>UNC</option>
                 </datalist>
-                <button class="start" id="start-button">Start</button>
+                <br>
+                <button class="start button is-primary" id="start-button">Go!</button>
             </div>
         <div class="game-wrapper" id="game-cards">
         <div class="cards buttons is-centered" >
@@ -82,22 +84,21 @@
 
         </div>
 
-        <div class="game-controls">
+        <div class="game-controls displayInCenter">
             <div id="game-score">Score: 0</div>
             <div id="game-over-display">You're almost there...</div>
             <div class="container">
-                <button type="button" class="btn" id="reset-button">Reset Game</button>
+                <!-- <button type="button" class="btn" id="reset-button">Reset Game</button> -->
+                <button id="signOut">Sign Out</button>
             </div>
             
         </div>
         </div>
-        <button id="signOut">Sign Out</button>
-        <div id="NASA-pic" class="NASA">
-            <div id="NASA-header" class="center">
-                <h1>NASA Astronomy Picture of the Day</h1>
-                <h2 id="title"></h2>
-                <p id = "date"></p>
-                <img src="" width=300; height=300; id="picture"/>
+        <div id="NASA-pic" class="NASA displayInCenter">
+            <div id="NASA-header">
+                <h1>As a reward for winning, here is NASA's Astronomy Picture of the Day!</h1>
+                <h2 id="NASA-title"></h2>
+                <img src="" width=400; height=400; id="NASA-picture"/>
             </div>
             <div class="picture-description">
                 <p id="NASA-description"></p>

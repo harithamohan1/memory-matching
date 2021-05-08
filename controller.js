@@ -67,7 +67,7 @@ export const renderBoard = function(game) {
                 if(!pairsRevealed.includes(game.board[i].pair)) {
                     if(!game.board[i].flipped){
                         // document.getElementById(currentCard).innerHTML = `<i class = "${game.board[i].icon}"></i>`;
-                        document.getElementById(currentCard).innerHTML = `<img src = "${game.board[i].url}" width="200" height="200"></i>`;
+                        document.getElementById(currentCard).innerHTML = `<img src = "${game.board[i].url}" height="150"></i>`;
                         game.board[i].flipped = true;
                         flippedCards.push(game.board[i].pair);
                         cardsFlipped.push(currentCard);
@@ -78,7 +78,7 @@ export const renderBoard = function(game) {
                                 game.score+=1;
                                 document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString();
                                 if(game.gameOver()) {
-                                    document.getElementById('game-over-display').innerHTML = 'Nice! You won!';
+                                    document.getElementById('game-over-display').innerHTML = 'Nice! You win!';
                                     let NASA_URL = NASA_key.NASA_API_URL;
                                     let fetchNASAPicture = async() => {
                                         try {
@@ -90,9 +90,10 @@ export const renderBoard = function(game) {
                                         }
                                     }
                                     let renderNASA = result => {
-                                        document.getElementById('title').textContent = result.title
-                                        document.getElementById('date').textContent = result.date
-                                        document.getElementById('picture').src = result.hdurl
+                                        document.getElementById('NASA-title').textContent = result.title
+                                        // document.getElementById('date').textContent = result.date;
+                                        // result.date
+                                        document.getElementById('NASA-picture').src = result.hdurl
                                         document.getElementById('NASA-description').textContent = result.explanation
                                     }
                                     fetchNASAPicture();
@@ -104,7 +105,7 @@ export const renderBoard = function(game) {
                                 showAlert();
                                 function showAlert(){
                                     setTimeout(function() {
-                                        alert("The cards did not match");
+                                        alert("Not a match! Try again.");
                                         numFlipped=0;
                                         let mostRecentI = cardsFlipped.pop();
                                         let mostRecentCard = cardsFlipped.pop();
@@ -139,18 +140,18 @@ export const renderReset = function(game) {
     // numFlipped = 0;
     // cardsFlipped = [];
     renderBoard(game);
-    $('#reset-button').click(function() {
-        console.log("game has been reset");
-        // urlSoFar = [];
-        // flippedCards = [];
-        // pairsRevealed = [];
-        // numFlipped = 0;
-        // cardsFlipped = [];
-        game.setupNewGame();
-        game.score = 0;
-        // let newGame = new Game();
-        renderReset(game);
-    })
+    // $('#reset-button').click(function() {
+    //     console.log("game has been reset");
+    //     // urlSoFar = [];
+    //     // flippedCards = [];
+    //     // pairsRevealed = [];
+    //     // numFlipped = 0;
+    //     // cardsFlipped = [];
+    //     game.setupNewGame();
+    //     game.score = 0;
+    //     // let newGame = new Game();
+    //     renderReset(game);
+    // })
 }
 
 $('#start-button').click(function() {
