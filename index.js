@@ -22,9 +22,7 @@
       let password = document.getElementById("password");
       const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
       promise.catch(e=> alert(e.message));
-
       alert("Signed up.");
-      
   }
 
   function signIn() {
@@ -33,7 +31,6 @@
     let password = document.getElementById("password");
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e=> alert(e.message));
-
     alert("Signed in " + email);
   }
 
@@ -47,10 +44,8 @@
       if(needChange){
         if(user) {
             let email = user.email;
-            // alert("Active User " + email);
             window.location = 'entry.html';
         } else {
-            //   alert("No Active User");
             window.location = 'index.html';
         }
     }

@@ -6,21 +6,10 @@ let flippedCards = [];
 let pairsRevealed = [];
 let numFlipped = 0;
 let cardsFlipped = [];
-let icons = [
-    "fas fa-music",
-    "fas fa-music",
-    "fas fa-mp3-player",
-    "fas fa-mp3-player",
-    "fas fa-drum",
-    "fas fa-drum",
-    "fas fa-volume",
-    "fas fa-volume"
-];
-//try this again
+
 export const renderBoard = function(game) {
-    console.log("reach renderBoard");
     const requestURL = 'https://api.unsplash.com/search/photos?query='+document.getElementById("userTheme").value+ '&client_id=' + client_key.client;
-    console.log("is requestURL working?" + requestURL);
+    document.getElementById("user-theme-choice").innerHTML = "Game Theme: " + document.getElementById("userTheme").value;
     picAssignment();
     async function picAssignment() {
         for(let i=1; i<12;i++){
@@ -55,19 +44,12 @@ export const renderBoard = function(game) {
     for(let i = 0; i<game.size; i++){
         let currentCard = (i+1).toString();
         document.getElementById(currentCard).innerHTML = game.board[i].id;
-        document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString();
-        // urlSoFar = [];
-        // flippedCards = [];
-        // pairsRevealed = [];
-        // numFlipped = 0;
-        // cardsFlipped = [];
+        document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString() + '/6';
         if(!pairsRevealed.includes(game.board[i].pair)){
             $('#'+currentCard).click(function() {
-                console.log(flippedCards);
                 if(!pairsRevealed.includes(game.board[i].pair)) {
                     if(!game.board[i].flipped){
-                        // document.getElementById(currentCard).innerHTML = `<i class = "${game.board[i].icon}"></i>`;
-                        document.getElementById(currentCard).innerHTML = `<img src = "${game.board[i].url}" height="150"></i>`;
+                        document.getElementById(currentCard).innerHTML = `<img class="tile-pic" src = "${game.board[i].url}" height="100"></i>`;
                         game.board[i].flipped = true;
                         flippedCards.push(game.board[i].pair);
                         cardsFlipped.push(currentCard);
@@ -76,7 +58,7 @@ export const renderBoard = function(game) {
                             if(flippedCards[flippedCards.length-1] === flippedCards[flippedCards.length-2]){
                                 pairsRevealed.push(game.board[i].pair);
                                 game.score+=1;
-                                document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString();
+                                document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString() +'/6';
                                 if(game.gameOver()) {
                                     document.getElementById('game-over-display').innerHTML = 'Nice! You win!';
                                     let NASA_URL = NASA_key.NASA_API_URL;
@@ -91,8 +73,6 @@ export const renderBoard = function(game) {
                                     }
                                     let renderNASA = result => {
                                         document.getElementById('NASA-title').textContent = result.title
-                                        // document.getElementById('date').textContent = result.date;
-                                        // result.date
                                         document.getElementById('NASA-picture').src = result.hdurl
                                         document.getElementById('NASA-description').textContent = result.explanation
                                     }
@@ -134,30 +114,12 @@ export const renderBoard = function(game) {
 }
 
 export const renderReset = function(game) {
-    // urlSoFar = [];
-    // flippedCards = [];
-    // pairsRevealed = [];
-    // numFlipped = 0;
-    // cardsFlipped = [];
     renderBoard(game);
-    // $('#reset-button').click(function() {
-    //     console.log("game has been reset");
-    //     // urlSoFar = [];
-    //     // flippedCards = [];
-    //     // pairsRevealed = [];
-    //     // numFlipped = 0;
-    //     // cardsFlipped = [];
-    //     game.setupNewGame();
-    //     game.score = 0;
-    //     // let newGame = new Game();
-    //     renderReset(game);
-    // })
 }
 
 $('#start-button').click(function() {
     document.getElementById("start-appear").style.display = "none";
     document.getElementById("game-cards").style.display = "inline-block";
     let game = new Game();
-    console.log("game begins!")
     renderReset(game);
 })

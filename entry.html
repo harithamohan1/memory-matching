@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-background-primary-light">
     <head>  
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"/>
+        <link rel="shortcut icon" type="image/jpg" href="./favicon.png"/>
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
-
         <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
-        <title>Final Project 426</title>
+        <title>Memory Marvel</title>
         <script src="index.js" type="module"></script>
         <script src="game.js" type="module"></script>
         <script src="controller.js" type="module"></script>
@@ -21,10 +21,46 @@
     </head>
     <body class="has-background-primary-light">
         <div class = "intro">
-            <h1 class="title is-2 pt-3 displayInCenter">Memory Matching Game</h1>
-            <p class="subtitle is-4 pt-3 displayInCenter">Click the squares and try to find all the matches</p>
+            <h1 class="title is-2 pt-3 displayInCenter">Memory Marvel</h1>
+            <p class="subtitle is-4 pt-3 displayInCenter">Click the cards to find all the matches</p>
         </div>
-
+        <br>
+        <div class="mod displayInCenter">
+            <button id="helpTwo" class="button is-primary displayInCenter">Instructions</button>
+            <div id="modalTwo" class="modal">
+                <div id="modalTwoContent" class="modal-content">
+                    <span id="spanTwo" class="close">&times</span>
+                    <p><b>Memory Marvel Instructions</b></p>
+                    <br>
+                    <!-- <p>Are you ready to be marvelled by your memory?</p>
+                    <p>To start playing Memory Marvel, sign in or create an account.</p>
+                    <h2>You can also check out your current geographic location using the map below!</h2> -->
+                    <p>Choose a theme for the game either from the menu or type in a word of your own choosing!</p>
+                    <p>Find all the matching pairs- you can track your score as you progress.</p>
+                    <p>You will receive 1 point per match you find.</p>
+                    <p>If you reach all 6 points, there is a surprise waiting for you!</p>
+                    <!-- <img src="./meme.jpeg"/> -->
+                    
+                </div>
+            </div>
+            <script>
+                let modal = document.getElementById("modalTwo");
+                let helpBtn = document.getElementById("helpTwo");
+                let helpSpan = document.getElementById("spanTwo");
+                helpBtn.onclick = function() {
+                    modal.style.display = "block";
+                }
+                helpSpan.onclick = function() {
+                    modal.style.display = "none";
+                }
+    
+                window.onclick = function(event) {
+                    if(event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
         <div class="center">
             <div class="choose-theme displayInCenter" id="start-appear">
                 <label for="theme">Select theme:</label>
@@ -56,6 +92,8 @@
                 <button class="start button is-primary" id="start-button">Go!</button>
             </div>
         <div class="game-wrapper" id="game-cards">
+            <div id="user-theme-choice" class="displayInCenter"></div>
+            <br>
         <div class="cards buttons is-centered" >
             <button class="button is-large is-focused is-primary is-large" style = "height:150px; width:150px" id="1"></button>
             <button class="button is-large is-focused is-primary is-large" style = "height:150px; width:150px" id="2"></button>
@@ -71,30 +109,17 @@
             <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="10"></button>
             <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="11"></button>
             <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="12"></button>
-
-            <!-- <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="13"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="14"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="15"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="16"></button>
-
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="17"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="18"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="19"></button>
-            <button class="button is-large is-focused is-primary is-medium" style = "height:150px; width:150px" id="20"></button> -->
-
         </div>
-
         <div class="game-controls displayInCenter">
-            <div id="game-score">Score: 0</div>
+            <div id="game-score">Score: 0/6</div>
             <div id="game-over-display">You're almost there...</div>
             <div class="container">
-                <!-- <button type="button" class="btn" id="reset-button">Reset Game</button> -->
                 <button id="signOut">Sign Out</button>
             </div>
-            
         </div>
+        <br>
         </div>
-        <div id="NASA-pic" class="NASA displayInCenter">
+        <div id="NASA-pic" class="NASA displayInCenter solid-border has-background-primary-light">
             <div id="NASA-header">
                 <h1>As a reward for winning, here is NASA's Astronomy Picture of the Day!</h1>
                 <h2 id="NASA-title"></h2>
@@ -110,9 +135,6 @@
             window.location = 'index.html';
         });
         </script>
-        <!-- <script src="game.js" type="module"></script>
-        <script src="controller.js" type="module"></script> -->
-        <!-- <script src="index.js" type="module"></script> -->
     </body>
 </html>
 
