@@ -16,7 +16,7 @@ let icons = [
     "fas fa-volume",
     "fas fa-volume"
 ];
-
+//try this again
 export const renderBoard = function(game) {
     console.log("reach renderBoard");
     const requestURL = 'https://api.unsplash.com/search/photos?query='+document.getElementById("userTheme").value+ '&client_id=' + client_key.client;
