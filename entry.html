@@ -122,6 +122,44 @@
         <div id="NASA-pic" class="NASA displayInCenter solid-border has-background-primary-light">
             <div id="NASA-header">
                 <h1>As a reward for winning, here is NASA's Astronomy Picture of the Day!</h1>
+                <div class="mod displayInCenter">
+                    <button id="helpThree" class="button is-primary displayInCenter">More Info.</button>
+                    <div id="modalThree" class="modal">
+                        <div id="modalThreeContent" class="modal-content">
+                            <span id="spanThree" class="close">&times</span>
+                            <p><b>About this Image</b></p>
+                            <br>
+                            <!-- <p>Are you ready to be marvelled by your memory?</p>
+                            <p>To start playing Memory Marvel, sign in or create an account.</p>
+                            <h2>You can also check out your current geographic location using the map below!</h2> -->
+                            <!-- <p>Choose a theme for the game either from the menu or type in a word of your own choosing!</p>
+                            <p>Find all the matching pairs- you can track your score as you progress.</p>
+                            <p>You will receive 1 point per match you find.</p>
+                            <p>If you reach all 6 points, there is a surprise waiting for you!</p> -->
+                            <!-- <img src="./meme.jpeg"/> -->
+                            <p>This picture is generated from NASA's APOD (Astronomy Picture of the Day) API</p>
+                            <p>According to <a href="https://apod.nasa.gov/apod/astropix.html">APOD.NASA.gov</a>: "Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer."</p>
+                            <p>To learn more, check out: <a href="https://www.nasa.gov/">NASA.gov</a></p> 
+                        </div>
+                    </div>
+                    <script>
+                        let modalA = document.getElementById("modalThree");
+                        let helpBtnA = document.getElementById("helpThree");
+                        let helpSpanA = document.getElementById("spanThree");
+                        helpBtnA.onclick = function() {
+                            modalA.style.display = "block";
+                        }
+                        helpSpanA.onclick = function() {
+                            modalA.style.display = "none";
+                        }
+            
+                        window.onclick = function(event) {
+                            if(event.target == modal) {
+                                modalA.style.display = "none";
+                            }
+                        }
+                    </script>
+                </div>
                 <h2 id="NASA-title"></h2>
                 <img src="" width=400; height=400; id="NASA-picture"/>
             </div>
