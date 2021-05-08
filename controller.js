@@ -43,6 +43,7 @@ export const renderBoard = function(game) {
     }
     for(let i = 0; i<game.size; i++){
         let currentCard = (i+1).toString();
+        //do not show id to user
         // document.getElementById(currentCard).innerHTML = game.board[i].id;
         document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString() + '/6';
         if(!pairsRevealed.includes(game.board[i].pair)){
