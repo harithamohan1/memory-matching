@@ -43,7 +43,7 @@ export const renderBoard = function(game) {
     }
     for(let i = 0; i<game.size; i++){
         let currentCard = (i+1).toString();
-        document.getElementById(currentCard).innerHTML = game.board[i].id;
+        // document.getElementById(currentCard).innerHTML = game.board[i].id;
         document.getElementById('game-score').innerHTML = 'Score: ' + game.score.toString() + '/6';
         if(!pairsRevealed.includes(game.board[i].pair)){
             $('#'+currentCard).click(function() {
@@ -89,11 +89,13 @@ export const renderBoard = function(game) {
                                         numFlipped=0;
                                         let mostRecentI = cardsFlipped.pop();
                                         let mostRecentCard = cardsFlipped.pop();
-                                        document.getElementById(mostRecentCard).innerHTML = game.board[mostRecentI].id;
+                                        // document.getElementById(mostRecentCard).innerHTML = game.board[mostRecentI].id;
+                                        document.getElementById(mostRecentCard).innerHTML = "";
                                         game.board[mostRecentI].flipped = false;
                                         let lessRecentI = cardsFlipped.pop();
                                         let lessRecentCard = cardsFlipped.pop();
-                                        document.getElementById(lessRecentCard).innerHTML = game.board[lessRecentI].id;
+                                        // document.getElementById(lessRecentCard).innerHTML = game.board[lessRecentI].id;
+                                        document.getElementById(lessRecentCard).innerHTML = "";
                                         game.board[lessRecentI].flipped = false;
                                         flippedCards.pop();
                                         flippedCards.pop();
@@ -102,7 +104,8 @@ export const renderBoard = function(game) {
 
                             }
                     } else {
-                        document.getElementById(currentCard).innerHTML = game.board[i].id;
+                        // document.getElementById(currentCard).innerHTML = game.board[i].id;
+                        document.getElementById(currentCard).innerHTML = "";
                         game.board[i].flipped=false;
                         flippedCards.pop(game.board[i].pair);
                         numFlipped-=1;
