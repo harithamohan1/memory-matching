@@ -23,9 +23,9 @@ export const renderBoard = function(game) {
     console.log("is requestURL working?" + requestURL);
     picAssignment();
     async function picAssignment() {
-        for(let i=1; i<8;i++){
+        for(let i=1; i<12;i++){
             let currURL = await fetchImage();
-            for(let j=0;j<8;j++){
+            for(let j=0;j<12;j++){
                 if(game.board[j].id===i) {
                     game.board[j].url = currURL;
                 }
@@ -67,7 +67,7 @@ export const renderBoard = function(game) {
                 if(!pairsRevealed.includes(game.board[i].pair)) {
                     if(!game.board[i].flipped){
                         // document.getElementById(currentCard).innerHTML = `<i class = "${game.board[i].icon}"></i>`;
-                        document.getElementById(currentCard).innerHTML = `<img src = "${game.board[i].url}"></i>`;
+                        document.getElementById(currentCard).innerHTML = `<img src = "${game.board[i].url}" width="200" height="200"></i>`;
                         game.board[i].flipped = true;
                         flippedCards.push(game.board[i].pair);
                         cardsFlipped.push(currentCard);

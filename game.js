@@ -3,72 +3,87 @@ export default class Game {
         this.score = 0;
         this.won = false;
         this.over = false;
-        this.board = [
-            {
-                "id": 1,
-                "pair":1,
+        let counter = 1;
+        this.board = [];
+        for(let i=0; i<12; i++){
+            let newTile = {
+                "id":i+1,
+                "pair": counter,
                 "flipped": false,
                 "reveal": false,
-                // "icon": "fas fa-music",
                 "url":"",
-            },
-            {
-                "id": 2,
-                "pair":1,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-music",
-                "url":"",
-            },
-            {
-                "id": 3,
-                "pair":2,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-home",
-                "url":"",
-            },
-            {
-                "id": 4,
-                "pair":2,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-home",
-                "url":"",
-            },
-            {
-                "id": 5,
-                "pair":3,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-drum",
-                "url":"",
-            },
-            {
-                "id": 6,
-                "pair":3,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-drum",
-                "url":"",
-            },
-            {
-                "id": 7,
-                "pair":4,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-trash",
-                "url":"",
-            },
-            {
-                "id": 8,
-                "pair":4,
-                "flipped": false,
-                "reveal": false,
-                // "icon": "fas fa-trash",
-                "url":"",
-            },
-        ];
+            }
+            if(i%2!=0) {
+                counter+=1;
+            }
+            this.board.push(newTile);
+        }
+        // this.board = [
+        //     {
+        //         "id": 1,
+        //         "pair":1,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-music",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 2,
+        //         "pair":1,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-music",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 3,
+        //         "pair":2,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-home",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 4,
+        //         "pair":2,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-home",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 5,
+        //         "pair":3,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-drum",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 6,
+        //         "pair":3,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-drum",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 7,
+        //         "pair":4,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-trash",
+        //         "url":"",
+        //     },
+        //     {
+        //         "id": 8,
+        //         "pair":4,
+        //         "flipped": false,
+        //         "reveal": false,
+        //         // "icon": "fas fa-trash",
+        //         "url":"",
+        //     },
+        // ];
         this.size = this.board.length;
         this.setupNewGame();
 
@@ -106,7 +121,7 @@ export default class Game {
             this.board[i] = gameState.board[i];
         }
     }
-    
+
     matchQuestion(currIndex, otherIndex) {
         if(this.board[currIndex].pair === this.board[otherIndex].pair){
             return true;
